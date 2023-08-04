@@ -1,4 +1,5 @@
-/* Aşağıda global olarak tanımlanmış değişkenler bulunmaktadır, bunları değiştirmeyin. Açıklamaları takip ederek görevleri tamamlayın. */
+/* Aşağıda global olarak tanımlanmış değişkenler bulunmaktadır, bunları değiştirmeyin. 
+Açıklamaları takip ederek görevleri tamamlayın. */
 var cumleler = [
   ["Annem", "ekmek", "almak", "için", "gitti."],
   ["Babam", "her", "zaman", "çok", "sevdi."],
@@ -99,15 +100,17 @@ function cumleKur(
 
 /* (Oto test yok) cumleKur fonksiyonuna yalnızca 1 parametre göndererek "Hello World!" stringini elde edin, 
 sonucu konsolde gözlemleyin */
+//console.log(cumleKur("Hello World!"));
 
 /* (Oto test yok) cumleKur fonksiyonuna yalnızca 2 parametre göndererek "Hello World!" stringini elde edin, 
 sonucu konsolde gözlemleyin */
-
+//console.log(cumleKur("Hello", " World!"));
 /* (Oto test var) cumleKur fonksiyonuna 5 parametre göndererek "Ben iyi bir yazılımcı olacağım!" stringini 
 elde edin, sonucu `bircumle` değişkenine atayın ve konsolde gözlemleyin */
 var bircumle;
-
 /* kodlar buraya */
+bircumle = cumleKur("Ben", " iyi", " bir", " yazılımcı", " olacağım!");
+//console.log(bircumle);
 
 //		Sayfanın en üstünde global olarak tanımlanmış `cumleler` adında bir dizi bulunmaktadır. Bu dizinin
 // içinde en çok 5 en az 1 adet string bulunan diziler bulunmaktadır.Aşağıdaki görevlerde aksi
@@ -128,9 +131,12 @@ var bircumle;
 			5. Oluşturulan yeni dizi döndürülecek.
 	*/
 
-function cumlelereDonustur(/* kodlar buraya */) {
+function cumlelereDonustur(arr, str = ",") {
   /* kodlar buraya */
+  let combinedArr = arr.map((e) => e.join(str));
+  return combinedArr;
 }
+//console.log(cumlelereDonustur(cumleler, " "));
 
 /* GÖREV 2:
 		paragrafOlustur fonksiyonuna aşağıdakileri uygulayın.
@@ -145,9 +151,19 @@ function cumlelereDonustur(/* kodlar buraya */) {
 			6. Oluşturulan paragraf döndürülecek
 	*/
 
-function paragrafOlustur(/* kodlar buraya */) {
+function paragrafOlustur(arr, cumleKur) {
   /* kodlar buraya */
+  let combinedArr = arr.map((e) => e.join(" "));
+  let newArr = cumleKur(
+    combinedArr[1],
+    combinedArr[3],
+    combinedArr[5],
+    combinedArr[7],
+    combinedArr[9]
+  );
+  return newArr;
 }
+//paragrafOlustur(cumleler, cumleKur);
 
 /* 	GÖREV 3:
 		Yukarıda isimleri sebzeler ve meyveler olan 2 dizi bulunmaktadır. Bu dizileri kullanarak aşağıdaki görevleri tamamlayın.
@@ -155,6 +171,8 @@ function paragrafOlustur(/* kodlar buraya */) {
  */
 //3a çözümü
 /* kodlar buraya */
+meyveler.pop();
+meyveler.shift();
 
 /* 			3b.  Bir tavşan ve bir kirpi arkadaşlar sebzeler dizimizin peşine düştü. Tavşan => 🐇 , Kirpi=> 🦔 , 
 Tavşanla kirpi sebzeleri ele geçirmek için bir plan kurdular. Tavşan diziye önden saldıracak, kirpi ise 
@@ -163,15 +181,14 @@ Kirpiyi dizinin son elemanına ekleyin 🦔
  */
 //3b çözümü
 /* kodlar buraya */
-
+sebzeler.unshift("🐇");
+sebzeler.push("🦔");
 /* 			3c. manav isminde bir dizi oluşturun.`meyveler` dizisi ilk elemanlara, `sebzeler` dizisi son 
 elemanlara denk gelecek şekilde, iki diziyi birleştirip sonucu manav dizisine aktarın. (.concat metodu)
  */
 //3c çözümü
 /* kodlar buraya */
-
-var manav;
-
+var manav = [...meyveler, ...sebzeler];
 /* 	GÖREV 4:
 		Yeni kurulmuş bir mesajlaşma startup firması atılan mesajları emojilerle zenginleştirmek istiyor. 
     Bunun için emojiler adında bir nesne tanımlamışlar. Kullanıcının gönderdiği mesaj stringi içinde 
@@ -189,10 +206,31 @@ var manav;
 			4. elde edilen string döndürülecek
  */
 
-function emojileriDonustur(/* kodlar buraya */) {
+function emojileriDonustur(str, emojiler) {
   /* kodlar buraya */
+  /* let split = str.split(" ");
+  let newStr = "";
+  split.forEach((e) => {
+    for (let key in emojiler) {
+      if (e.toLowerCase() === key.toLowerCase()) {
+        e = emojiler[key];
+      }
+    }
+    newStr += e + " ";
+  }); */
+  for (let key in emojiler) {
+    str = str.replaceAll(key.toLowerCase(), emojiler[key]);
+    str = str.replaceAll(key.toUpperCase(), emojiler[key]);
+  }
+  return str;
+  //return newStr.trim();
 }
-
+console.log(
+  emojileriDonustur(
+    "Selam :) Nasılsın :D Bugünkü olay çok komikti :P ama sonra çok şaşırdık :o biraz da üzüldük :( ama yine de seviliyorsun <3",
+    emojiler
+  )
+);
 /*  Bu satırın aşağısındaki kodları lütfen değiştirmeyin  */
 function sa() {
   console.log("Kodlar çalışıyor");
